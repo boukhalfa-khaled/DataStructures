@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-/* Header File start */
+/* this code will be in the Header File*/
 #define MAXSTACK 7
 typedef int StackEntry;
 /* Header File end*/
