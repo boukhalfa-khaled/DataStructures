@@ -16,8 +16,8 @@ typedef struct queue{
 
 void CreateQueue(Queue *pq)
 {
-    pq->font=NULL;
-    pq->rear=NUll;
+    pq->front=NULL;
+    pq->rear= NULL;
     pq->size=0;
 }
 

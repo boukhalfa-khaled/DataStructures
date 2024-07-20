@@ -14,8 +14,7 @@ void CreateStack(Stack *pStack){
     pStack->top=0; 
 }
 void Push(StackEntry e, Stack *pStack){
-    pStack->entry[pStack->top] = e;
-    pStack->top++;
+    pStack->entry[pStack->top++] = e;
 }
 
 int StackFull(Stack *pStack)
@@ -28,8 +27,7 @@ int StackEmpty(Stack *pStack)
 }
 void Pop(StackEntry *pe, Stack *pStack)
 {
-    pStack->top--;
-    *pe= pStack->entry[pStack->top];
+    *pe= pStack->entry[--pStack->top];
 }
 void StackTop(StackEntry *pe, Stack *pStack)
 {
@@ -44,9 +42,18 @@ void ClearStack(Stack *pStack)
 }
 void TraverseStack(Stack *pStack, void (*pFunction)(StackEntry))
 {
-    for(int i=0; i<pStack->top; i++)
+    // for(int i=0; i<pStack->top; i++)
+    // {
+    //     pFunction(pStack->entry[i]);
+    // }
+    // for(int i=pStack->top; i > 0;i--)
+    // {
+    //     (*pFunction)(pStack->entry[i-1]);
+    // }
+
+    for(int i=pStack->top; i > 0;i--)
     {
-        pFunction(pStack->entry[i]);
+         pFunction(pStack->entry[i-1]);
     }
 }
 /*  SIMPLE MAIN PROGRAM FOR TEST */
@@ -54,6 +61,17 @@ void TraverseStack(Stack *pStack, void (*pFunction)(StackEntry))
 void display (StackEntry e){
     printf("---> %d\n",e);
 }
+
+
+// StackTop created by the user if the implementer does not provide one
+
+void User_StackTop(StackEntry *pEntry, Stack *pStack)
+{
+    Pop(pEntry, pStack);
+    Push(*pEntry, pStack);
+}
+
+
 
 int main(){
     Stack s;
@@ -67,11 +85,13 @@ int main(){
     printf("\n\n\n");
     StackEntry a;
     StackEntry b;
+    StackEntry c;
     Pop(&a, &s);
     StackTop(&b, &s);
-    Push(4, &s);
+    User_StackTop(&c, &s);
     printf("this is the a element is poped now %d\n", a);
-    printf("this is the b element the last element in the Stack %d\n", b);
+    printf("this is the b element the last element in the Stack using implementer stack top %d\n", b);
+    printf("this is the c element the last element in the Stack using User STack ToP %d\n", c);
     Push(4, &s);
     printf("i just push 4 to the stack\n");
     printf("Stack Size %d\n", StackSize(&s));
