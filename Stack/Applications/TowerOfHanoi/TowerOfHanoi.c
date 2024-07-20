@@ -54,6 +54,26 @@
     smaller cases, by making progress toward  reducing the 
     problem all the way to base  case.
 
+    the number of the function calls is(steps) :
+    1 + 2 + 4 + 8 = 1 + 2 + 2^count-1 = 2^count -1 geomatrice series
+    can we write the function Move iteratively, not recursively?
+
+in this case , we will find that we really need to build a stack, We will
+find that the nature of the problem neccessitates that we first solve the 
+problem at size count -1 then return back to the original problem, To 
+return back we had to save it in a stack!
+
+In such cases defining the problem recursivly is much better, since you
+let the OS build the stack itslef which is much more efficient then your
+stack.
+
+However , there are some cases in which soling the problem iterativly is 
+better if the eiterative alogrithm does not need a stack, Hence, solving
+it recursively build an unnecessarily stack, which wastes memory and time
+consumed in function return.  Example is the factorial.
+check the factorial program ../factorial
+
+
 */
 
 
