@@ -1,8 +1,12 @@
-test :test.c
-	gcc test.c -o test
+test :test.c queue.o
+	gcc $^ -o $@
+
+
+queue.o: queue.c queue.h
+	gcc -c  queue.c
 
 show:
 	./test
 
 clean:
-	rm test
+	rm *.o
