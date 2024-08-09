@@ -30,7 +30,7 @@ int main()
     else{
          int b;
          RetriveList(index, &b ,&l);
-         printf(" 30 founded in %d : \n",index);
+         printf(" 30 founded in index %d : \n",index);
          printf("retrive list in index %d, is : %d\n", index, b);
     }
 

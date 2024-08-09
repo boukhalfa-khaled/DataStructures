@@ -83,23 +83,33 @@ void InsertOrderList(ListEntry entry, List *pList)
     InsertList(current, entry , pList);
 }
 
-int  BinarySearch(List *pList, ListEntry target, int bottom, int top)
-{
-    int middle;
-    if(bottom<=top) {
-        middle=(bottom+top)/2;
-    if(EQ(target, pList->entry[middle]))
-        return middle;
-    if(EQ(target, pList->entry[middle]))
-        return BinarySearch(pList, target, bottom, middle-1);
-    else
-        return BinarySearch(pList, target, middle+1, top);
-    }
-    return -1;
-}
+//int  BinarySearch(List *pList, ListEntry target, int bottom, int top)
+//{
+//    int middle;
+//    if(bottom<=top) {
+//        middle=(bottom+top)/2;
+//    if(EQ(target, pList->entry[middle]))
+//        return middle;
+//    if(EQ(target, pList->entry[middle]))
+//        return BinarySearch(pList, target, bottom, middle-1);
+//    else
+//        return BinarySearch(pList, target, middle+1, top);
+//    }
+//    return -1;
+//}
 
 int SearchList(ListEntry target, List *pList)
 {
-    return BinarySearch(pList, target, 0 , pList->size-1);
+    int middle, bottom=0, top=pList->size;
+    while(bottom<=top){
+        middle = (bottom+top)/2;
+        if(EQ(target, pList->entry[middle]))
+            return middle;
+        if(LT(target, pList->entry[middle]))
+            top=middle-1;
+        else
+            bottom=middle+1;
+    }
+    return -1;
 }
 
