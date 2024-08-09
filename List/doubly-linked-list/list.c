@@ -191,3 +191,16 @@ void TraversList(List *pList, void(*pFunction)(ListEntry))
         pn = pn->next;
     }
 }
+
+// SEARCH USING LINEAR SERACH in array implementation we used binary Search
+int SearchList(ListEntry target, List *pList)
+{   
+    int current ,  s=ListSize(pList);
+    ListEntry currentEntry;
+    for(current=0; current < s; current++) {
+        RetriveList(current, &currentEntry, pList);
+        if(EQ(target, currentEntry))
+            return current;
+    }
+    return -1;
+}

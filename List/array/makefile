@@ -3,3 +3,6 @@ test : test.c list.o
 
 list.o : list.c list.h
 	cc -c list.c
+
+run : test
+	./test

@@ -34,7 +34,7 @@ void
 InsertList(int position, ListEntry entry, List *pList)
 {
     for(int i=pList->size; i > position; i--){
-        pList->entry[i+1] = pList->entry[i];
+        pList->entry[i] = pList->entry[i-1];
     }
     pList->entry[position] = entry; 
     pList->size++;
@@ -68,5 +68,38 @@ TraversList(List *pList, void(*pFunction)(ListEntry))
     {
         (*pFunction)(pList->entry[i]);
     }
+}
+
+void InsertOrderList(ListEntry entry, List *pList)
+{
+    int current;
+    int s=ListSize(pList);
+    ListEntry currententry;
+    for(current=0 ; current < s; current++){
+        RetriveList(current, &currententry, pList);
+        if(LE(entry, currententry))
+            break;
+    }
+    InsertList(current, entry , pList);
+}
+
+int  BinarySearch(List *pList, ListEntry target, int bottom, int top)
+{
+    int middle;
+    if(bottom<=top) {
+        middle=(bottom+top)/2;
+    if(EQ(target, pList->entry[middle]))
+        return middle;
+    if(EQ(target, pList->entry[middle]))
+        return BinarySearch(pList, target, bottom, middle-1);
+    else
+        return BinarySearch(pList, target, middle+1, top);
+    }
+    return -1;
+}
+
+int SearchList(ListEntry target, List *pList)
+{
+    return BinarySearch(pList, target, 0 , pList->size-1);
 }
 
